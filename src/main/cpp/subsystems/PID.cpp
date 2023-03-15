@@ -4,11 +4,11 @@ PID::PID(double kP, double kI, double kD, double dT, double min, double max) :
     _kp(kP),
     _ki(kI),
     _kd(kD),
-    _prevErr(0),
-    _integral(0),
     _dt(dT),
     _min(min),
-    _max(max)
+    _max(max),
+    _prevErr(0),
+    _integral(0)
     {
     }
 

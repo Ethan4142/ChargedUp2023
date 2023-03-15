@@ -20,6 +20,7 @@
 #include "subsystems/Drive.h"
 #include "subsystems/Intake.h"
 #include "subsystems/Swivel.h"
+#include "subsystems/Manipulator.h"
 /**
  * This class is where the bulk of the robot should be declared.  Since
  * Command-based is a "declarative" paradigm, very little robot logic should

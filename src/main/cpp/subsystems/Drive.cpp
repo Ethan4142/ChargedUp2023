@@ -18,6 +18,9 @@ Drive::Drive()
     m_rightEncoder{kRightEncoderPorts[0], kRightEncoderPorts[1]},
     m_leftEncoder{kLeftEncoderPorts[0], kLeftEncoderPorts[1]}{
         m_RgtF.SetInverted(true);
+        m_LftF.SetInverted(true);
+        m_LftB.SetInverted(true);   //uhh
+        m_RgtB.SetInverted(true);
         m_RgtB.Follow(m_RgtF);
         m_LftB.Follow(m_LftF);
         m_RgtF.ConfigStatorCurrentLimit(StatorCurrentLimitConfiguration(true, 20, 25, 1.0));
@@ -31,15 +34,15 @@ void Drive::Periodic(){
 }
 
 void Drive::Arcade(double x, double y){
-    m_drive.ArcadeDrive(x, y);
+    m_drive.ArcadeDrive(-x, y);
 }
 
 
 void Drive::SetDrive(double Rgt, double Lft){
     m_RgtF.Set(ctre::phoenix::motorcontrol::TalonFXControlMode::PercentOutput, Rgt);
     m_LftF.Set(ctre::phoenix::motorcontrol::TalonFXControlMode::PercentOutput, Lft);
-    m_RgtB.Set(ctre::phoenix::motorcontrol::TalonFXControlMode::PercentOutput, Rgt);
-    m_LftB.Set(ctre::phoenix::motorcontrol::TalonFXControlMode::PercentOutput, Lft);
+    //m_RgtB.Set(ctre::phoenix::motorcontrol::TalonFXControlMode::PercentOutput, Rgt);
+    //m_LftB.Set(ctre::phoenix::motorcontrol::TalonFXControlMode::PercentOutput, Lft);
 }
 
 units::degree_t Drive::GetHeading(){
