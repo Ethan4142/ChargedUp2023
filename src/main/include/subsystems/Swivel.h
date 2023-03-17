@@ -26,6 +26,8 @@ class Swivel : public frc2::SubsystemBase{
 
      [[nodiscard]] frc2::CommandPtr SwivelStop();
 
+     [[nodiscard]] frc2::CommandPtr ZeroSwivel();
+
      void Periodic();
      
     private:

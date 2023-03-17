@@ -57,8 +57,8 @@ frc2::CommandPtr Intake::RetractCommand() {
   //          mainIntake.Set(frc::DoubleSolenoid::kReverse);
   //        })
   //     .WithName("Retract");
-  return RunOnce([this] {IntakeMotor.Disable();
-          mainIntake.Set(frc::DoubleSolenoid::kReverse);})
+  return RunOnce([this] {mainIntake.Set(frc::DoubleSolenoid::kReverse);
+              IntakeMotor.Set(ctre::phoenix::motorcontrol::TalonFXControlMode::PercentOutput, 0);})
           .AndThen(Run([this] {intakeJoint.Set(frc::DoubleSolenoid::kReverse);}))
           .WithName("Retract");
 }
@@ -66,4 +66,9 @@ frc2::CommandPtr Intake::RetractCommand() {
 frc2::CommandPtr Intake::RetractSmall(){
   return Run([this] {intakeJoint.Set(frc::DoubleSolenoid::kReverse);})
   .WithName("lol");
+}
+
+frc2::CommandPtr Intake::FeederStation(){
+  return RunOnce([this] {mainIntake.Set(frc::DoubleSolenoid::kForward);})
+  .WithName("Feeder Station");
 }

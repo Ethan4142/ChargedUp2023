@@ -27,9 +27,7 @@ class Manipulator : public frc2::SubsystemBase{
 
      [[nodiscard]] frc2::CommandPtr IntakeCubeCommand();
 
-     [[nodiscard]] frc2::CommandPtr OuttakeConeCommand();
-
-     [[nodiscard]] frc2::CommandPtr OuttakeCubeCommand();
+     [[nodiscard]] frc2::CommandPtr ScoreCommand();
 
      [[nodiscard]] frc2::CommandPtr StopConeCommand();
      

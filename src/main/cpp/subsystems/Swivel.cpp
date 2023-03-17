@@ -9,8 +9,8 @@ Swivel::Swivel(){
     swivelMotor.ConfigFactoryDefault();
     swivelMotor.SetInverted(true);
     swivelMotor.ConfigPeakCurrentLimit(0);
-
-    swivelMotor.SelectProfileSlot(8, 0);
+    swivelMotor.SetSensorPhase(true);
+    swivelMotor.SelectProfileSlot(0, 0);
     swivelMotor.Config_kF(0, SwivelConstants::SwivelkF, 10);
     swivelMotor.Config_kP(0, SwivelConstants::SwivelkP, 10);
     swivelMotor.Config_kI(0,SwivelConstants::SwivelkI, 10);
@@ -59,6 +59,11 @@ frc2::CommandPtr Swivel::SwivelBk(){    //Reverse
 frc2::CommandPtr Swivel::SwivelStop(){
     return RunOnce([this] {swivelMotor.Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0);})
     .WithName("stop swivel");
+}
+
+frc2::CommandPtr Swivel::ZeroSwivel(){
+    return RunOnce([this] {Swivel::resetSwivel();})
+    .WithName("Zero Swivel");
 }
 
 void Swivel::Periodic(){

@@ -12,14 +12,13 @@
 #include <frc/Encoder.h>
 #include <frc/DoubleSolenoid.h>
 #include <frc/motorcontrol/MotorControllerGroup.h>
+#include <frc/DigitalInput.h>
 
 using namespace ElevatorConstants;
 
 class Elevator : public frc2::SubsystemBase{
     public:
         Elevator();
-        double getElevatorPose();
-        void resetElevator();
         void SetElevator();
 
         [[nodiscard]] frc2::CommandPtr ElevatorFlipOut();
@@ -38,8 +37,9 @@ class Elevator : public frc2::SubsystemBase{
         ctre::phoenix::motorcontrol::can::WPI_TalonFX rgtElevator{ElevatorConstants::rgtElevatorPort};
         ctre::phoenix::motorcontrol::can::WPI_TalonFX lftElevator{ElevatorConstants::lftElevatorPort};
         ctre::phoenix::motorcontrol::GroupMotorControllers ElevatorMotors;
-
-        
+        frc::DigitalInput Home{ElevatorConstants::lowMagPort};
+        frc::DigitalInput SecondStage{ElevatorConstants::MidMagPort};
+        frc::DigitalInput ThirdStage{ElevatorConstants::HighMagPort};
         
         //frc::MotorControllerGroup ElevatorMotors{rgtElevator, lftElevator};
         //frc::Encoder ElevatorEncoder{ElevatorConstants::ElevatorEncPorts[0], ElevatorConstants::ElevatorEncPorts[1]};

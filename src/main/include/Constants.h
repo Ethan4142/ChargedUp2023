@@ -99,12 +99,10 @@ namespace IntakeConstants{
 namespace ElevatorConstants{
     constexpr int rgtElevatorPort = 7;
     constexpr int lftElevatorPort = 6;
-    constexpr int ElevatorEncPorts[] = {2, 3};
-    constexpr bool kElevatorEncReversed = true;
     constexpr int ExtensionPorts [] = {4, 5};
-    constexpr int lowMagPort = 2;   //Change later (Ports for Hall effect sensors)
-    constexpr int MidMagPort = 3;
-    constexpr int HighMagPort = 4;
+    constexpr int lowMagPort = 4;   //Change later (Ports for Hall effect sensors)
+    constexpr int MidMagPort = 5;
+    constexpr int HighMagPort = 6;
 
     constexpr double ElevatorkP = 0.0;
     constexpr double ElevatorkI = 0.0;
@@ -136,8 +134,8 @@ namespace SwivelConstants{
     constexpr double SwivelkD = 0.0;
     constexpr double SwivelkF = 0.0;
 
-    constexpr int CruiseVel = 1500;
-    constexpr int SwivelAccl = 1500;
+    constexpr int CruiseVel = 1000;
+    constexpr int SwivelAccl = 1000;
 
 
 }

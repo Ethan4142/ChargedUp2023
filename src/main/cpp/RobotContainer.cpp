@@ -37,54 +37,43 @@ RobotContainer::RobotContainer() {
   ConfigureBindings();
   
   pchsDrive.SetDefaultCommand(Teleop(
-    &pchsDrive, [this] {return -m_driverController.GetLeftY();},
-    [this] {return m_driverController.GetRightX();}));
+    &pchsDrive, [this] {return m_driverController.GetLeftY();},
+    [this] {return -m_driverController.GetRightX();}));
 
   //pchsElevator.SetDefaultCommand(Elevator::ElevatorStop());
 }
 
 void RobotContainer::ConfigureBindings() {
-    //Extend intake and run 
-    m_driverController.LeftBumper().OnTrue(pchsIntake.IntakeCommand());
+    //m_loop.Bind(pchsIntake.mainIntake.Set(frc::DoubleSolenoid::kForward));
     
+    m_operatorPannel.Button(1).OnTrue(pchsIntake.IntakeCommand());
     //Retract intake + stop
-    m_driverController.RightBumper().OnTrue(pchsIntake.RetractCommand());//Swivel Fwd
-    m_driverController.A().OnTrue(pchsSwivel.SwivelFwd());
-    m_driverController.A().OnFalse(pchsSwivel.SwivelStop());
+    m_operatorPannel.Button(2).OnTrue(pchsIntake.RetractCommand());//Swivel Fwd
+
+    m_operatorPannel.Button(3).OnTrue(pchsIntake.FeederStation());
+
+    m_operatorPannel.Button(4).OnTrue(pchsSwivel.SwivelFwd());
+    m_operatorPannel.Button(4).OnFalse(pchsSwivel.SwivelStop());
+
+    m_operatorPannel.Button(5).OnTrue(pchsSwivel.SwivelBk());
+    m_operatorPannel.Button(5).OnFalse(pchsSwivel.SwivelStop());
+
+    m_operatorPannel.Button(7).OnTrue(pchsElevator.ElevatorFwd());
+    m_operatorPannel.Button(7).OnFalse(pchsElevator.ElevatorStop());
+
+    m_operatorPannel.Button(8).OnTrue(pchsElevator.ElevatorBk());
+    m_operatorPannel.Button(8).OnFalse(pchsElevator.ElevatorStop());
+
+    m_operatorPannel.Button(9).OnTrue(pchsManipulator.IntakeCubeCommand());
+    m_operatorPannel.Button(9).OnFalse(pchsManipulator.StopCubeCommand());
+
+    m_driverController.LeftTrigger().OnTrue(pchsManipulator.ScoreCommand());
+    m_driverController.LeftTrigger().OnFalse(pchsManipulator.StopCubeCommand());
+    m_driverController.A().OnTrue(pchsElevator.ElevatorFlipOut());
+
+    m_driverController.B().OnTrue(pchsElevator.ElevatorRetract());
     
-    //Swivel Back
-    m_driverController.B().WhileTrue(pchsSwivel.SwivelBk());
-    m_driverController.B().OnFalse(pchsSwivel.SwivelStop());
-    
-    //Pick up cone
-    m_operatorPannel.Button(1).OnTrue(pchsManipulator.IntakeConeCommand());
-    m_operatorPannel.Button(1).OnFalse(pchsManipulator.StopConeCommand());
-
-    //Intake Cube
-    m_driverController.X().OnTrue(pchsManipulator.IntakeCubeCommand());
-    m_driverController.X().OnFalse(pchsManipulator.StopCubeCommand());
-    
-    //Outtake cone
-    m_operatorPannel.Button(2).OnTrue(pchsManipulator.OuttakeConeCommand());
-    m_operatorPannel.Button(2).OnFalse(pchsManipulator.StopConeCommand());
-
-    m_operatorPannel.Button(3).OnTrue(pchsManipulator.OuttakeCubeCommand());
-    m_operatorPannel.Button(3).OnFalse(pchsManipulator.StopCubeCommand());
-    
-    m_operatorPannel.Button(4).OnTrue(pchsElevator.ElevatorFwd());
-    m_operatorPannel.Button(4).OnFalse(pchsElevator.ElevatorBreak());
-
-    m_operatorPannel.Button(5).OnTrue(pchsElevator.ElevatorBk());
-    m_operatorPannel.Button(5).OnFalse(pchsElevator.ElevatorBreak());
-
-    m_operatorPannel.Button(7).OnTrue(pchsElevator.EleCoast());
-
-    m_operatorPannel.Button(8).OnTrue(pchsElevator.ElevatorFlipOut());
-
-    //m_operatorPannel.Button(9).OnTrue(pchsElevator.ElevatorRetract());
-
-    m_operatorPannel.Button(9).OnTrue(pchsDrive.TestDrive());
-    m_operatorPannel.Button(9).OnFalse(pchsDrive.StopDrive());
+    //m_operatorPannel.Button(9).OnTrue(pchsSwivel.ZeroSwivel());
 
 
 }

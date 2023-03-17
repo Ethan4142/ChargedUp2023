@@ -28,15 +28,10 @@ frc2::CommandPtr Manipulator::IntakeCubeCommand(){
 
 }
 
-frc2::CommandPtr Manipulator::OuttakeConeCommand(){
+frc2::CommandPtr Manipulator::ScoreCommand(){
     return RunOnce([this] { ManipulatorJoint.Set(frc::DoubleSolenoid::kForward);})
     .AndThen(Run([this] {ManipulatorMotor.Set(ctre::phoenix::motorcontrol::TalonFXControlMode::PercentOutput, -0.25);}))
     .WithName("Spit Cone");
-}
-
-frc2::CommandPtr Manipulator::OuttakeCubeCommand(){
-    return RunOnce([this] {ManipulatorMotor.Set(ctre::phoenix::motorcontrol::TalonFXControlMode::PercentOutput, -0.25);})
-    .WithName("Spit Cube");
 }
 
 frc2::CommandPtr Manipulator::StopConeCommand(){

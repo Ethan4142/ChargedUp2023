@@ -33,6 +33,8 @@ class Intake : public frc2::SubsystemBase{
      [[nodiscard]] frc2::CommandPtr RetractCommand();
 
      [[nodiscard]] frc2::CommandPtr RetractSmall();
+
+     [[nodiscard]] frc2::CommandPtr FeederStation();
     private:
 
     ctre::phoenix::motorcontrol::can::WPI_TalonFX IntakeMotor;

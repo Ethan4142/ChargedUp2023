@@ -8,27 +8,6 @@ Elevator::Elevator(){
     lftElevator.ConfigFactoryDefault();
     rgtElevator.SetInverted(true);
     lftElevator.Follow(rgtElevator);
-
-
-    rgtElevator.ConfigSelectedFeedbackSensor(ctre::phoenix::motorcontrol::FeedbackDevice::CTRE_MagEncoder_Relative,1, 10);
-    rgtElevator.ConfigMotionCruiseVelocity(1500, 100);
-    rgtElevator.ConfigMotionAcceleration(100, 10);
-
-    rgtElevator.SelectProfileSlot(1,0);
-    rgtElevator.Config_kF(1, ElevatorConstants::ElevatorkF);
-    rgtElevator.Config_kP(1, ElevatorConstants::ElevatorkP);
-    rgtElevator.Config_kI(1, ElevatorConstants::ElevatorkI);
-    rgtElevator.Config_kD(1, ElevatorConstants::ElevatorkD);
-
-}
-
-
-double Elevator::getElevatorPose(){
-    return rgtElevator.GetSelectedSensorPosition(1);
-}
-
-void Elevator::resetElevator(){
-    rgtElevator.SetSelectedSensorPosition(0, 1, 10);
 }
 
 frc2::CommandPtr Elevator::ElevatorFlipOut(){
@@ -41,7 +20,7 @@ frc2::CommandPtr Elevator::ElevatorFlipOut(){
 
 frc2::CommandPtr Elevator::ElevatorRetract(){
     return RunOnce([this] {Extension.Set(frc::DoubleSolenoid::kForward);})
-    .WithName("chink");
+    .WithName("Retract Elevator");
 }
 
 frc2::CommandPtr Elevator::ElevatorFwd(){
@@ -69,22 +48,3 @@ frc2::CommandPtr Elevator::EleCoast(){
     return RunOnce([this] {rgtElevator.SetNeutralMode(ctre::phoenix::motorcontrol::Coast);})
     .WithName("dog");
 }
-// frc2::CommandPtr Elevator::ElevatorDownCommand(){
-//     return RunOnce([this] {rgtElevator.Set(ctre::phoenix::motorcontrol::ControlMode::Position, ElevatorConstants::ElevatorDown);})
-//     .WithName("Elevator Down");
-// }
-
-// frc2::CommandPtr Elevator::ElevatorPrepCommand(){
-//     return RunOnce([this] {rgtElevator.Set(ctre::phoenix::motorcontrol::ControlMode::Position, ElevatorConstants::ElevatorDown);})
-//     .WithName("Prep Elevator");
-// }
-
-// frc2::CommandPtr Elevator::ElevatorScore2Command(){
-//     return RunOnce([this] {rgtElevator.Set(ctre::phoenix::motorcontrol::ControlMode::Position, ElevatorConstants::ElevatorScore2);})
-//     .WithName("Elevator Score Position");
-// }
-
-// frc2::CommandPtr Elevator::ElevatorScore3Command(){
-//     return RunOnce([this] {rgtElevator.Set(ctre::phoenix::motorcontrol::ControlMode::Position, ElevatorConstants::ElevatorScore3);})
-//     .WithName("Elevator 3rd Stage Score");
-// }
