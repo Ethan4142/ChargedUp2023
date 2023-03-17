@@ -6,6 +6,7 @@
 
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/button/CommandXboxController.h>
+#include <frc2/command/button/CommandJoystick.h>
 
 #include <frc/XboxController.h>
 #include <frc/Joystick.h>
@@ -18,6 +19,7 @@
 #include "commands/Autos.h"
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/Drive.h"
+#include "subsystems/Elevator.h"
 #include "subsystems/Intake.h"
 #include "subsystems/Swivel.h"
 #include "subsystems/Manipulator.h"
@@ -38,7 +40,7 @@ class RobotContainer {
   // Replace with CommandPS4Controller or CommandJoystick if needed
   frc2::CommandXboxController m_driverController{
       OperatorConstants::kDriverControllerPort};
-  frc::Joystick m_operatorPannel{
+  frc2::CommandJoystick m_operatorPannel{
     OperatorConstants::kOperatorPannelPort};
 
   
@@ -46,8 +48,11 @@ class RobotContainer {
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
   Drive pchsDrive;
+  Elevator pchsElevator;
   Intake pchsIntake;
+  Manipulator pchsManipulator;
   Swivel pchsSwivel;
+
   
   // frc2::CommandPtr m_simpleAuto = autos::SimpleAuto(&pchsDrive);
   // frc2::CommandPtr m_NiceAuto = autos::NiceAuto(&pchsDrive, &pchsIntake);

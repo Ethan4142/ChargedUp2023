@@ -47,6 +47,9 @@ class Drive : public frc2::SubsystemBase{
 
      units::degree_t GetPitch();
      
+     [[nodiscard]] frc2::CommandPtr TestDrive();
+     [[nodiscard]] frc2::CommandPtr StopDrive();
+     
      double GetTurnRate();
      void SetDrive(double Rgt, double Lft);
 
@@ -66,8 +69,8 @@ class Drive : public frc2::SubsystemBase{
     ctre::phoenix::motorcontrol::can::WPI_TalonFX m_RgtB;
     ctre::phoenix::motorcontrol::can::WPI_TalonFX m_LftB;
 
-    frc::Encoder m_rightEncoder;
-    frc::Encoder m_leftEncoder;
+    // frc::Encoder m_rightEncoder;
+    // frc::Encoder m_leftEncoder;
 
     //frc::SimpleMotorFeedforward<units::meters> m_feedforward;
     // frc::MotorControllerGroup m_rightMotors {m_RgtF, m_RgtB};

@@ -28,8 +28,8 @@ namespace DriveConstants{
     //---------------
     //Motor + Sensors
     //---------------
-    constexpr int RgtFPort = 3;
-    constexpr int RgtBPort = 4;
+    constexpr int RgtFPort = 4;
+    constexpr int RgtBPort = 8;
     constexpr int LftFPort = 0;
     constexpr int LftBPort = 5;
 
@@ -102,6 +102,9 @@ namespace ElevatorConstants{
     constexpr int ElevatorEncPorts[] = {2, 3};
     constexpr bool kElevatorEncReversed = true;
     constexpr int ExtensionPorts [] = {4, 5};
+    constexpr int lowMagPort = 2;   //Change later (Ports for Hall effect sensors)
+    constexpr int MidMagPort = 3;
+    constexpr int HighMagPort = 4;
 
     constexpr double ElevatorkP = 0.0;
     constexpr double ElevatorkI = 0.0;
@@ -113,13 +116,14 @@ namespace ElevatorConstants{
 
     constexpr int ElevatorDown = 0;
     constexpr int ElevatorPrep = 1000;
-    constexpr int ElevatorScore = 1700;
+    constexpr int ElevatorScore2 = 1700;
+    constexpr int ElevatorScore3 = 2000;
     
     
 }
 
 namespace SwivelConstants{
-    constexpr int swivelPort = 7;
+    constexpr int swivelPort = 10;
     constexpr int swivelEncPort [] = {8, 9};
         
     //Swivel Presets
@@ -141,7 +145,7 @@ namespace SwivelConstants{
 namespace ManipulatorConstants{
     //1x 775
     //1 piston
-    constexpr int manipulatorPort = 8;
+    constexpr int manipulatorPort = 2;
     constexpr int manipulatorPistonPorts [] = {6, 7};
 
 }

@@ -18,15 +18,24 @@ class Intake : public frc2::SubsystemBase{
     public:
      Intake();
      
+     void moveMain();
+     void reverseMain();
+
+     void moveSmall();
+     void reverseSmall();
+
+     void setIntakeMotor(int pow);
+     
      [[nodiscard]] frc2::CommandPtr IntakeCommand();
 
      [[nodiscard]] frc2::CommandPtr OuttakeCommand();
 
      [[nodiscard]] frc2::CommandPtr RetractCommand();
+
+     [[nodiscard]] frc2::CommandPtr RetractSmall();
     private:
 
     ctre::phoenix::motorcontrol::can::WPI_TalonFX IntakeMotor;
-    frc::DoubleSolenoid mainIntake{frc::PneumaticsModuleType::REVPH, 
-    IntakeConstants::IntakeMainPorts[0], IntakeConstants::IntakeMainPorts[1]};
-    frc::DoubleSolenoid intakeJoint{frc::PneumaticsModuleType::REVPH, IntakeConstants::IntakeJointPorts[0], IntakeConstants::IntakeJointPorts[1]};
+    frc::DoubleSolenoid mainIntake{frc::PneumaticsModuleType::REVPH, 9,13};
+    frc::DoubleSolenoid intakeJoint{frc::PneumaticsModuleType::REVPH, 8, 12};
 };

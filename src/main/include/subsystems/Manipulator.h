@@ -31,8 +31,12 @@ class Manipulator : public frc2::SubsystemBase{
 
      [[nodiscard]] frc2::CommandPtr OuttakeCubeCommand();
 
+     [[nodiscard]] frc2::CommandPtr StopConeCommand();
+     
+     [[nodiscard]] frc2::CommandPtr StopCubeCommand();
+     
 
     private:
      ctre::phoenix::motorcontrol::can::WPI_TalonFX ManipulatorMotor;
-     frc::DoubleSolenoid ManipulatorJoint{frc::PneumaticsModuleType::REVPH, 1, 2};
+     frc::DoubleSolenoid ManipulatorJoint{frc::PneumaticsModuleType::REVPH, 11, 15};
 };
