@@ -19,8 +19,11 @@ using namespace ElevatorConstants;
 class Elevator : public frc2::SubsystemBase{
     public:
         Elevator();
-        void SetElevator();
-
+        void SetElevator(int pow);
+        bool AtHome();
+        bool AtSecond();
+        bool AtThird();
+        //Basic functionality testing commands
         [[nodiscard]] frc2::CommandPtr ElevatorFlipOut();
         [[nodsicard]] frc2::CommandPtr ElevatorRetract();
         [[nodiscard]] frc2::CommandPtr ElevatorFwd();
@@ -28,10 +31,10 @@ class Elevator : public frc2::SubsystemBase{
         [[nodiscard]] frc2::CommandPtr ElevatorStop();
         [[nodiscard]] frc2::CommandPtr ElevatorBreak();
         [[nodsicard]] frc2::CommandPtr EleCoast();
-        // [[nodiscard]] frc2::CommandPtr ElevatorDownCommand();
-        // [[nodiscard]] frc2::CommandPtr ElevatorPrepCommand();
-        // [[nodiscard]] frc2::CommandPtr ElevatorScore2Command();
-        // [[nodiscard]] frc2::CommandPtr ElevatorScore3Command();
+        //Automation commands (move elevator to 3 different pos)
+        [[nodiscard]] frc2::CommandPtr MoveElevatorHome();
+        [[nodiscard]] frc2::CommandPtr MoveElevatorSecond();
+        [[nodiscard]] frc2::CommandPtr MoveElevatorThird();
 
     private:
         ctre::phoenix::motorcontrol::can::WPI_TalonFX rgtElevator{ElevatorConstants::rgtElevatorPort};

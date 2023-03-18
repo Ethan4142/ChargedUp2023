@@ -35,7 +35,8 @@ frc2::CommandPtr Manipulator::ScoreCommand(){
 }
 
 frc2::CommandPtr Manipulator::StopConeCommand(){
-    return RunOnce([this] {ManipulatorMotor.Set(ctre::phoenix::motorcontrol::TalonFXControlMode::PercentOutput, 0);})
+    return RunOnce([this] {ManipulatorMotor.Set(ctre::phoenix::motorcontrol::TalonFXControlMode::PercentOutput, 0);
+    ManipulatorJoint.Set(frc::DoubleSolenoid::kReverse);})
     .WithName("Stop cone");
 }
 frc2::CommandPtr Manipulator::StopCubeCommand(){

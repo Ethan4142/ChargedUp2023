@@ -37,7 +37,7 @@ void Intake::setIntakeMotor(int pow){
 frc2::CommandPtr Intake::IntakeCommand() {
   return RunOnce([this] {intakeJoint.Set(frc::DoubleSolenoid::kForward);})
       .AndThen(Run([this] {mainIntake.Set(frc::DoubleSolenoid::kForward);
-      IntakeMotor.Set(ctre::phoenix::motorcontrol::TalonFXControlMode::PercentOutput, 0.25);}))
+      IntakeMotor.Set(ctre::phoenix::motorcontrol::TalonFXControlMode::PercentOutput, 0.4);}))
       //.AndThen(Run([this] { IntakeMotor.Set(ctre::phoenix::motorcontrol::TalonFXControlMode::PercentOutput, 0.25); }))
       .WithName("Intake");
 }

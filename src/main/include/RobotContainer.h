@@ -14,6 +14,7 @@
 //#include <frc/smartdashboard/SendableChooser.h>
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/InstantCommand.h>
+#include <frc2/command/button/Trigger.h>
 
 #include "Constants.h"
 #include "commands/Autos.h"
@@ -43,7 +44,15 @@ class RobotContainer {
   frc2::CommandJoystick m_operatorPannel{
     OperatorConstants::kOperatorPannelPort};
   
+  // frc::Joystick operatorPanel{
+  //   OperatorConstants::kOperatorPannelPort};
   
+  bool gndIn;
+  bool subIn;
+  bool inBck;
+  bool manIn;
+  bool flipOut;
+  bool flipIn;
   //frc::SendableChooser<frc2::Command*> m_chooser; 
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;

@@ -46,10 +46,16 @@ void Drive::SetDrive(double Rgt, double Lft){
 }
 
 frc2::CommandPtr Drive::TestDrive(){
-    return Run([this] {Drive::SetDrive(0.5, 0.5);})
+    return Run([this] {m_RgtF.SetNeutralMode(ctre::phoenix::motorcontrol::Brake);
+                       m_LftF.SetNeutralMode(ctre::phoenix::motorcontrol::Brake);//Ethan added setting neutral mode to brake
+        /*Drive::SetDrive(0.5, 0.5);*/})
     .WithName("Test Drive");
 }
-
+frc2::CommandPtr Drive::TestDriveOff(){
+    return Run([this]{m_RgtF.SetNeutralMode(ctre::phoenix::motorcontrol::Brake);
+                      m_LftF.SetNeutralMode(ctre::phoenix::motorcontrol::Brake);})
+    .WithName("TestDriveOff");
+}
 frc2::CommandPtr Drive::StopDrive(){
     return Run([this] {Drive::SetDrive(0, 0);})
     .WithName("Stop Drive");

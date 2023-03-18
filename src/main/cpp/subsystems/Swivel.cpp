@@ -47,7 +47,7 @@ frc2::CommandPtr Swivel::SwivelScoreCommand(){
 }
 
 frc2::CommandPtr Swivel::SwivelFwd(){
-    return RunOnce([this] {swivelMotor.Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0.5);})
+    return RunOnce([this] {swivelMotor.Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0.7);})
     .WithName("swivel forward");
 }
 

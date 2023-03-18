@@ -15,6 +15,7 @@
 #include <frc2/command/Commands.h>
 #include <frc2/command/RamseteCommand.h>
 #include <frc2/command/button/JoystickButton.h>
+#include <frc/Joystick.h>
 
 #include "commands/Autos.h"
 //#include "commands/TurnTo.h"
@@ -22,9 +23,10 @@
 #include "commands/Teleop.h"
 
 RobotContainer::RobotContainer() {
+  // operatorPanel.SetXChannel(3);
   // Initialize all of your commands and subsystems here
   // Configure the button bindings
-
+  // gndIn[(operatorPanel.GetX())];
   // m_chooser.SetDefaultOption("Simple Auto", m_simpleAuto.get());
   // m_chooser.AddOption("Complex Auto", m_NiceAuto.get());
   // //Add Auto to dash
@@ -44,6 +46,7 @@ RobotContainer::RobotContainer() {
 }
 
 void RobotContainer::ConfigureBindings() {
+   
     //m_loop.Bind(pchsIntake.mainIntake.Set(frc::DoubleSolenoid::kForward));
     
     m_operatorPannel.Button(1).OnTrue(pchsIntake.IntakeCommand());
@@ -59,27 +62,30 @@ void RobotContainer::ConfigureBindings() {
     m_operatorPannel.Button(5).OnFalse(pchsSwivel.SwivelStop());
 
     m_operatorPannel.Button(7).OnTrue(pchsElevator.ElevatorFwd());
-    m_operatorPannel.Button(7).OnFalse(pchsElevator.ElevatorStop());
+    m_operatorPannel.Button(7).OnFalse(pchsElevator.ElevatorBreak());//Ethan added for elevator brake
 
     m_operatorPannel.Button(8).OnTrue(pchsElevator.ElevatorBk());
-    m_operatorPannel.Button(8).OnFalse(pchsElevator.ElevatorStop());
+    m_operatorPannel.Button(8).OnFalse(pchsElevator.ElevatorBreak());//Ethan added for elevator brake
 
     m_operatorPannel.Button(9).OnTrue(pchsManipulator.IntakeCubeCommand());
-    m_operatorPannel.Button(9).OnFalse(pchsManipulator.StopCubeCommand());
+    m_operatorPannel.Button(9).OnFalse(pchsManipulator.StopConeCommand());
+
+    
 
     m_driverController.LeftTrigger().OnTrue(pchsManipulator.ScoreCommand());
     m_driverController.LeftTrigger().OnFalse(pchsManipulator.StopCubeCommand());
+
     m_driverController.A().OnTrue(pchsElevator.ElevatorFlipOut());
 
     m_driverController.B().OnTrue(pchsElevator.ElevatorRetract());
-    
+
     //m_operatorPannel.Button(9).OnTrue(pchsSwivel.ZeroSwivel());
 
-
+   
 }
 
 // frc2::Command* RobotContainer::GetAutonomousCommand() {
 //   // An example command will be run in autonomous
   
 //   //return m_chooser.GetSelected();
-// }
+// 
