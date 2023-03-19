@@ -18,6 +18,7 @@ class Swivel : public frc2::SubsystemBase{
      [[nodiscard]] frc2::CommandPtr SwivelDownCommand();
 
      [[nodiscard]] frc2::CommandPtr PrepSwivelCommand();
+     [[nodiscard]] frc2::CommandPtr FeederSwivel();
 
      [[nodiscard]] frc2::CommandPtr SwivelScoreCommand();
     

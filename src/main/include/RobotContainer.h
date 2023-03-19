@@ -24,6 +24,9 @@
 #include "subsystems/Intake.h"
 #include "subsystems/Swivel.h"
 #include "subsystems/Manipulator.h"
+#include "commands/Elevator/ElevatorThird.h"
+#include "JoystickAxisGreaterTrigger.h"
+
 /**
  * This class is where the bulk of the robot should be declared.  Since
  * Command-based is a "declarative" paradigm, very little robot logic should
@@ -34,6 +37,10 @@
 class RobotContainer {
  public:
   RobotContainer();
+  bool isGreater();
+  std::function<bool()> up;
+  //std::function<bool()> up;
+  
 
   //frc2::Command* GetAutonomousCommand();
   
@@ -57,7 +64,7 @@ class RobotContainer {
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
   Drive pchsDrive;
-  Elevator pchsElevator;
+  Elevator pchsElevator;  
   Intake pchsIntake;
   Manipulator pchsManipulator;
   Swivel pchsSwivel;
@@ -68,3 +75,5 @@ class RobotContainer {
 
   void ConfigureBindings();
 };
+
+//std::function<bool()> elevHome(){RobotContainer::pchsElevator::getHome()};

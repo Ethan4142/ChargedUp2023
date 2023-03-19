@@ -114,8 +114,8 @@ namespace ElevatorConstants{
 
     constexpr int ElevatorDown = 0;
     constexpr int ElevatorPrep = 1000;
-    constexpr int ElevatorScore2 = 1700;
-    constexpr int ElevatorScore3 = 2000;
+    constexpr int ElevatorScore2 = 123000;
+    constexpr int ElevatorScore3 = 170000;
     
     
 }
@@ -126,8 +126,9 @@ namespace SwivelConstants{
         
     //Swivel Presets
     constexpr int down = 0;
-    constexpr int prep = 1500;
-    constexpr int score = 2000;
+    constexpr int prep = 1000;
+    constexpr int feeder = 750;
+    constexpr int score = 2100;
 
     constexpr double SwivelkP = 2.3;
     constexpr double SwivelkI = 0.0;

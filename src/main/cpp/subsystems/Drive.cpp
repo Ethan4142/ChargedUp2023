@@ -63,12 +63,24 @@ frc2::CommandPtr Drive::StopDrive(){
 void Drive::Periodic(){
     frc::SmartDashboard::PutNumber("Drive Volts", m_RgtF.GetSupplyCurrent());
     frc::SmartDashboard::PutNumber("Drive Temp", m_RgtF.GetTemperature());
+    
 }
 units::degree_t Drive::GetHeading(){
     return units::degree_t{std::remainder(m_gyro.GetAngle(), 360) *
                                     (kGyroReversed ? -1.0 : 1.0)};
 }
 
+frc2::CommandPtr Drive::BrakeDrive(){
+    return RunOnce([this] {Drive::m_RgtF.SetNeutralMode(Brake);
+                           Drive::m_LftF.SetNeutralMode(Brake);})
+                        .WithName("Break Drive");
+}
+
+frc2::CommandPtr Drive::CoastDrive(){
+    return RunOnce([this] {Drive::m_RgtF.SetNeutralMode(Coast);
+                            Drive::m_LftF.SetNeutralMode(Coast);})
+                            .WithName("Coast Drive");
+}
 // units::meter_t Drive::GetAverageEncoder(){
 //     return units::meter_t{(m_RgtF.GetSelectedSensorPosition() + m_LftF.GetSelectedSensorPosition()) / 2};
 // }

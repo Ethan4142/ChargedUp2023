@@ -50,6 +50,8 @@ class Drive : public frc2::SubsystemBase{
      [[nodiscard]] frc2::CommandPtr TestDrive();
      [[nodiscard]] frc2::CommandPtr StopDrive();
      [[nodiscard]] frc2::CommandPtr TestDriveOff();
+     [[nodiscard]] frc2::CommandPtr BrakeDrive();
+     [[nodiscard]] frc2::CommandPtr CoastDrive();
      
      double GetTurnRate();
      void SetDrive(double Rgt, double Lft);
