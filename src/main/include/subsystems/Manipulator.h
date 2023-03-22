@@ -22,6 +22,10 @@ class Manipulator : public frc2::SubsystemBase{
 
      void setManipulator(int pow);
 
+     bool open(bool yes);
+
+     bool getStatus();
+
 
      [[nodiscard]] frc2::CommandPtr IntakeConeCommand();
 
@@ -35,6 +39,6 @@ class Manipulator : public frc2::SubsystemBase{
      
 
     private:
-     ctre::phoenix::motorcontrol::can::WPI_TalonFX ManipulatorMotor;
+     ctre::phoenix::motorcontrol::can::WPI_TalonSRX ManipulatorMotor;
      frc::DoubleSolenoid ManipulatorJoint{frc::PneumaticsModuleType::REVPH, 11, 15};
 };

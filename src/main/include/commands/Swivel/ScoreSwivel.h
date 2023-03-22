@@ -1,13 +1,13 @@
 // #pragma once
-
 // #include <frc2/command/CommandBase.h>
 // #include <frc2/command/CommandHelper.h>
 
-// #include "subsystems/Elevator.h"
+// #include "subsystems/Swivel.h"
 
-// class ElevatorThird : public frc2::CommandHelper<frc2::CommandBase, ElevatorThird> {
+
+// class ScoreSwivel : public frc2::CommandHelper<frc2::CommandBase, ScoreSwivel> {
 //     public:
-//      ElevatorThird(Elevator* subsystem);
+//      ScoreSwivel(Swivel* subsystem);
 
 //      void Initialize() override; 
 //      void Initialize() override;
@@ -17,7 +17,8 @@
 //      void End(bool interrupted) override;
 
 //      bool IsFinished() override; 
+     
 //     private:
-//      Elevator* m_elevator;
-
+//      Swivel* m_swivel;
+        
 // };

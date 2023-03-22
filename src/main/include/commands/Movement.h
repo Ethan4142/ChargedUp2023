@@ -1,22 +1,27 @@
-#pragma once 
-#include <frc2/command/CommandHelper.h>
-#include "subsystems/Drive.h"
-#include "subsystems/PID.h"
+//  #pragma once 
+// // #include <frc2/command/CommandBase.h>
+// // #include <frc2/command/CommandHelper.h>
+// // #include "subsystems/Drive.h"
 
-// class Movement : public frc2::CommandHelper<frc2::CommandBase, Movement>{
-//     public:
-//     Movement(Drive* subsytem, double dist, double speed);
+// class DriveDistance: public frc2::CommandHelper<frc2::CommandBase, DriveDistance> {
+//  public:
+//   /**
+//    * Creates a new DriveDistance.
+//    *
+//    * @param inches The number of inches the robot will drive
+//    * @param speed The speed at which the robot will drive
+//    * @param drive The drive subsystem on which this command will run
+//    */
+//   DriveDistance(Drive* subsystem);
 
-//     void Initialize();
+//   void Initialize() override;
 
-//     void Execute() override;
+//   void Execute() override;
 
-//     bool IsFinished();
+//   void End(bool interrupted) override;
 
-//     void End();
+//   bool IsFinished() override;
 
-//     private:
-//      Drive* pchs_Drive;
-//      double dist;
-//      double speed;
+//  private:
+//   Drive* m_drive;
 // };

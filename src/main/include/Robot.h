@@ -31,6 +31,9 @@ class Robot : public frc::TimedRobot {
   std::optional<frc2::CommandPtr> m_autonomousCommand;
 
   RobotContainer m_container;
+//  frc2::Command* m_autonomousCommand = nullptr;
+
+
   // frc::SendableChooser<std::string> m_chooser;
   const std::string kAutoDefault = "Default";
   const std::string kTestAuto = "Test Auto";

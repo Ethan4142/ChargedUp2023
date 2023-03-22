@@ -1,5 +1,6 @@
 #pragma once
 
+#include <frc2/command/Command.h>
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
 #include <frc/motorcontrol/PWMSparkMax.h>
@@ -21,6 +22,7 @@
 #include <frc/trajectory/TrapezoidProfile.h>
 #include <frc2/command/PIDSubsystem.h>
 #include <frc2/command/SubsystemBase.h>
+#include <frc/Compressor.h>
 #include <units/length.h>
 #include <units/angle.h>
 #include "subsystems/PID.h"
@@ -34,7 +36,7 @@ class Drive : public frc2::SubsystemBase{
 
      void Reset();
      
-     units::meter_t GetAverageEncoder();
+     int GetAverageEncoder();
      frc::Encoder& GetLftEncoder();
 
      frc::Encoder& GetRgtEncoder();
@@ -65,6 +67,9 @@ class Drive : public frc2::SubsystemBase{
      bool isTilted();
 
      bool isLevel();
+     [[nodiscard]] frc2::CommandPtr DriveDistanceCommand(int distance,
+                                                      double speed);
+
     private:
  
     ctre::phoenix::motorcontrol::can::WPI_TalonFX m_RgtF;
@@ -82,5 +87,6 @@ class Drive : public frc2::SubsystemBase{
     frc::DifferentialDrive m_drive{m_LftF, m_RgtF};
     
     frc::ADXRS450_Gyro m_gyro;
+    //frc::Compressor phCompressor{6, frc::PneumaticsModuleType::REVPH};
     
 };

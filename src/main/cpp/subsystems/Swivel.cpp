@@ -29,6 +29,9 @@ void Swivel::setSwivel(int pow){
     swivelMotor.Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, pow);
 }
 
+int Swivel::getSwivel(){
+    return swivelMotor.GetSelectedSensorPosition();
+}
 frc2::CommandPtr Swivel::SwivelDownCommand(){
     //For picking up from the ground
     return Run([this] {swivelMotor.Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, -0.6);
@@ -44,7 +47,7 @@ frc2::CommandPtr Swivel::PrepSwivelCommand(){
     return Run([this] {swivelMotor.Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0.6);
                         if(swivelMotor.GetSelectedSensorPosition() > SwivelConstants::prep){
                             swivelMotor.SetNeutralMode(ctre::phoenix::motorcontrol::NeutralMode::Brake);
-                            swivelMotor.Set(ctre::phoenix::motorcontrol::TalonSRXControlMode::PercentOutput, 0);    
+                            swivelMotor.Set(ctre::phoenix::motorcontrol::TalonSRXControlMode::PercentOutput, 0.03);    
                         }})
     .WithName("Swivel Prep Position");
 }
@@ -53,14 +56,14 @@ frc2::CommandPtr Swivel::FeederSwivel(){
     return Run([this] {swivelMotor.Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0.6);
                         if(swivelMotor.GetSelectedSensorPosition() > SwivelConstants::feeder){
                             swivelMotor.SetNeutralMode(ctre::phoenix::motorcontrol::NeutralMode::Brake);
-                            swivelMotor.Set(ctre::phoenix::motorcontrol::TalonSRXControlMode::PercentOutput, 0);
+                            swivelMotor.Set(ctre::phoenix::motorcontrol::TalonSRXControlMode::PercentOutput, 0.03);
                         }})
                         .WithName("Feeder Position");
 }
 
 frc2::CommandPtr Swivel::SwivelScoreCommand(){
     //Put in scoring position
-    return Run([this] {swivelMotor.Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0.6);
+    return Run([this] {swivelMotor.Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput, 0.8);
                         if(swivelMotor.GetSelectedSensorPosition() > SwivelConstants::score){
                             swivelMotor.SetNeutralMode(ctre::phoenix::motorcontrol::NeutralMode::Brake);
                             swivelMotor.Set(ctre::phoenix::motorcontrol::TalonSRXControlMode::PercentOutput, 0);

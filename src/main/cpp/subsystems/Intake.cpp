@@ -10,8 +10,8 @@ using namespace IntakeConstants;
 
 Intake::Intake()
   : IntakeMotor{9}{
-    IntakeMotor.ConfigStatorCurrentLimit(StatorCurrentLimitConfiguration(true, 10, 15, 10));
-    IntakeMotor.ConfigSupplyCurrentLimit(SupplyCurrentLimitConfiguration(true, 10, 15, 0.5));
+    // IntakeMotor.ConfigStatorCurrentLimit(StatorCurrentLimitConfiguration(true, 10, 15, 10));
+    // IntakeMotor.ConfigSupplyCurrentLimit(SupplyCurrentLimitConfiguration(true, 10, 15, 0.5));
     IntakeMotor.SetInverted(true);
   }
 
@@ -31,13 +31,13 @@ void Intake::reverseSmall(){
 }
 
 void Intake::setIntakeMotor(int pow){
-  IntakeMotor.Set(ctre::phoenix::motorcontrol::TalonFXControlMode::PercentOutput, pow);
+  IntakeMotor.Set(ctre::phoenix::motorcontrol::TalonSRXControlMode::PercentOutput, pow);
 }
 
 frc2::CommandPtr Intake::IntakeCommand() {
   return RunOnce([this] {intakeJoint.Set(frc::DoubleSolenoid::kForward);})
       .AndThen(Run([this] {mainIntake.Set(frc::DoubleSolenoid::kForward);
-      IntakeMotor.Set(ctre::phoenix::motorcontrol::TalonFXControlMode::PercentOutput, 0.4);}))
+      IntakeMotor.Set(ctre::phoenix::motorcontrol::TalonSRXControlMode::PercentOutput, 0.9);}))
       //.AndThen(Run([this] { IntakeMotor.Set(ctre::phoenix::motorcontrol::TalonFXControlMode::PercentOutput, 0.25); }))
       .WithName("Intake");
 }
@@ -45,7 +45,7 @@ frc2::CommandPtr Intake::IntakeCommand() {
 frc2::CommandPtr Intake::OuttakeCommand(){
     return RunOnce([this] { intakeJoint.Set(frc::DoubleSolenoid::kForward);})
     .AndThen(Run([this] {mainIntake.Set(frc::DoubleSolenoid::kForward);}))
-    .AndThen(Run([this] { IntakeMotor.Set(ctre::phoenix::motorcontrol::TalonFXControlMode::PercentOutput, -0.5);}))
+    .AndThen(Run([this] { IntakeMotor.Set(ctre::phoenix::motorcontrol::TalonSRXControlMode::PercentOutput, -0.5);}))
     .WithName("Outtake");
 }
 
@@ -58,7 +58,7 @@ frc2::CommandPtr Intake::RetractCommand() {
   //        })
   //     .WithName("Retract");
   return RunOnce([this] {mainIntake.Set(frc::DoubleSolenoid::kReverse);
-              IntakeMotor.Set(ctre::phoenix::motorcontrol::TalonFXControlMode::PercentOutput, 0);})
+              IntakeMotor.Set(ctre::phoenix::motorcontrol::TalonSRXControlMode::PercentOutput, 0);})
           .AndThen(Run([this] {intakeJoint.Set(frc::DoubleSolenoid::kReverse);}))
           .WithName("Retract");
 }
@@ -71,4 +71,9 @@ frc2::CommandPtr Intake::RetractSmall(){
 frc2::CommandPtr Intake::FeederStation(){
   return RunOnce([this] {mainIntake.Set(frc::DoubleSolenoid::kForward);})
   .WithName("Feeder Station");
+}
+
+frc2::CommandPtr Intake::LowGoal(){
+  return Run([this] {IntakeMotor.Set(ctre::phoenix::motorcontrol::TalonSRXControlMode::PercentOutput, -0.6);})
+  .WithName("Low Goal");
 }

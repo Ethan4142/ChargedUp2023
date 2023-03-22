@@ -1,17 +1,27 @@
-#include "commands/Movement.h"
+// #include "commands/Movement.h"
 
-#include "Robot.h"
-#include "subsystems/PID.h"
+// #include "Robot.h"
 
-// Movement::Movement(Drive* subsytem, double dist, double speed){
-//     Movement::dist = dist;
-//     Movement::speed = speed;
-    
+
+// DriveDistance::DriveDistance(Drive* subsytem)
+//     : m_drive(subsytem){
+//         AddRequirements({subsytem});
+//     }
+
+// void DriveDistance::Initialize(){
+//     m_drive -> Reset();
 // }
 
-// void Movement::Initialize(){
-//     pchs_Drive -> Reset();
+// void DriveDistance::Execute(){
+//     m_drive -> SetDrive(0.5, 0.5);
 // }
 
+// void DriveDistance::End(bool interrupted){
+//     m_drive ->SetDrive(0, 0);
+// }
+
+// bool DriveDistance::IsFinished(){
+//     return m_drive -> GetAverageEncoder() >= 5000;
+// }
 
 

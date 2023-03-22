@@ -35,9 +35,11 @@ class Intake : public frc2::SubsystemBase{
      [[nodiscard]] frc2::CommandPtr RetractSmall();
 
      [[nodiscard]] frc2::CommandPtr FeederStation();
+
+     [[nodiscard]] frc2::CommandPtr LowGoal();
     private:
 
-    ctre::phoenix::motorcontrol::can::WPI_TalonFX IntakeMotor;
+    ctre::phoenix::motorcontrol::can::WPI_TalonSRX IntakeMotor;
     frc::DoubleSolenoid mainIntake{frc::PneumaticsModuleType::REVPH, 9,13};
     frc::DoubleSolenoid intakeJoint{frc::PneumaticsModuleType::REVPH, 8, 12};
 };

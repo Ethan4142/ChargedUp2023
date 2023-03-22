@@ -21,6 +21,7 @@ using namespace ElevatorConstants;
 class Elevator : public frc2::SubsystemBase{
     public:
         Elevator();
+        std::function<bool()> IsHome;
         void SetElevator(int pow);
         void ResetElevatorEnc();
         void MoveElevator(int dist);
@@ -29,6 +30,8 @@ class Elevator : public frc2::SubsystemBase{
         bool AtSecond();
         bool AtThird();
         void Periodic();
+
+        void extend(bool yes);
         
         //std::function <bool()> isHome = AtHome();
 
@@ -43,7 +46,7 @@ class Elevator : public frc2::SubsystemBase{
         [[nodiscard]] frc2::CommandPtr ElevatorStop();
         [[nodiscard]] frc2::CommandPtr ElevatorBreak();
         [[nodiscard]] frc2::CommandPtr EleCoast();
-        
+        [[nodiscard]] frc2::CommandPtr EleTest(std::function<bool()> home);
         //Automation commands (move elevator to 3 different pos)
         [[nodiscard]] frc2::CommandPtr MoveElevatorHome();
         [[nodiscard]] frc2::CommandPtr MoveElevatorSecond();

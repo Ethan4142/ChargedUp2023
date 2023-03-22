@@ -1,13 +1,12 @@
 // #pragma once
-
 // #include <frc2/command/CommandBase.h>
 // #include <frc2/command/CommandHelper.h>
 
-// #include "subsystems/Elevator.h"
+// #include <subsystems/Manipulator.h>
 
-// class ElevatorThird : public frc2::CommandHelper<frc2::CommandBase, ElevatorThird> {
+// class OpenManipulator : public frc2::CommandHelper<frc2::CommandBase, OpenManipulator> {
 //     public:
-//      ElevatorThird(Elevator* subsystem);
+//      OpenManipulator(Manipulator* subsystem);
 
 //      void Initialize() override; 
 //      void Initialize() override;
@@ -18,6 +17,6 @@
 
 //      bool IsFinished() override; 
 //     private:
-//      Elevator* m_elevator;
-
+//      Manipulator* m_manipulator;
+        
 // };

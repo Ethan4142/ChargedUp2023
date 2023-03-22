@@ -11,8 +11,12 @@
 #include <frc/XboxController.h>
 #include <frc/Joystick.h>
 #include <frc/controller/PIDController.h>
-//#include <frc/smartdashboard/SendableChooser.h>
+#include <frc/smartdashboard/SendableChooser.h>
+#include <frc2/command/Command.h>
+#include <frc2/command/Commands.h>
 #include <frc2/command/CommandPtr.h>
+#include <frc2/command/SubsystemBase.h>
+#include <frc2/command/Subsystem.h>
 #include <frc2/command/InstantCommand.h>
 #include <frc2/command/button/Trigger.h>
 
@@ -37,10 +41,11 @@
 class RobotContainer {
  public:
   RobotContainer();
+  frc2::CommandPtr GetAutonomousCommand();
   bool isGreater();
   std::function<bool()> up;
   //std::function<bool()> up;
-  
+  [[nodiscard]] frc2::CommandPtr testAuto();
 
   //frc2::Command* GetAutonomousCommand();
   
@@ -60,7 +65,7 @@ class RobotContainer {
   bool manIn;
   bool flipOut;
   bool flipIn;
-  //frc::SendableChooser<frc2::Command*> m_chooser; 
+  
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
   Drive pchsDrive;
@@ -68,10 +73,11 @@ class RobotContainer {
   Intake pchsIntake;
   Manipulator pchsManipulator;
   Swivel pchsSwivel;
-
   
-  // frc2::CommandPtr m_simpleAuto = autos::SimpleAuto(&pchsDrive);
-  // frc2::CommandPtr m_NiceAuto = autos::NiceAuto(&pchsDrive, &pchsIntake);
+
+  frc2::CommandPtr m_simpleAuto = autos::SimpleAuto(&pchsDrive);
+
+  frc::SendableChooser<frc2::Command*> m_chooser;
 
   void ConfigureBindings();
 };

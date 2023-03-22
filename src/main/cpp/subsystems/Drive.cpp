@@ -20,10 +20,11 @@ Drive::Drive()
     //m_leftEncoder{0, 1, k4X}{
         m_RgtF.SetInverted(true);
         m_LftF.SetInverted(false);
-        m_LftB.SetInverted(false);   //uhh
+        m_LftB.SetInverted(false);   
         m_RgtB.SetInverted(true);
         m_RgtB.Follow(m_RgtF);
         m_LftB.Follow(m_LftF);
+        //m_drive.
         //m_RgtF.ConfigStatorCurrentLimit(StatorCurrentLimitConfiguration(true, 20, 25, 1.0));
         //m_RgtF.ConfigSupplyCurrentLimit(SupplyCurrentLimitConfiguration(true, 20, 15, 0.5));
         //PID DrivePID(0.0, 0.0, 0.0, 100, -1, 1);
@@ -45,9 +46,13 @@ void Drive::SetDrive(double Rgt, double Lft){
     m_LftB.Set(ctre::phoenix::motorcontrol::TalonFXControlMode::Follower, 0);
 }
 
+void Drive::Reset(){
+    m_RgtF.SetSelectedSensorPosition(0);
+    m_LftF.SetSelectedSensorPosition(0);
+}
 frc2::CommandPtr Drive::TestDrive(){
-    return Run([this] {m_RgtF.SetNeutralMode(ctre::phoenix::motorcontrol::Brake);
-                       m_LftF.SetNeutralMode(ctre::phoenix::motorcontrol::Brake);//Ethan added setting neutral mode to brake
+    return Run([this] {m_RgtF.Set(0.4);
+                       m_LftF.Set(0.4);//Ethan added setting neutral mode to brake
         /*Drive::SetDrive(0.5, 0.5);*/})
     .WithName("Test Drive");
 }
@@ -63,6 +68,8 @@ frc2::CommandPtr Drive::StopDrive(){
 void Drive::Periodic(){
     frc::SmartDashboard::PutNumber("Drive Volts", m_RgtF.GetSupplyCurrent());
     frc::SmartDashboard::PutNumber("Drive Temp", m_RgtF.GetTemperature());
+    frc::SmartDashboard::PutNumber("Drive Enc", GetAverageEncoder());
+    //frc:://SmartDashboard::PutNumber("compressor Curent", phCompressor.GetCurrent());
     
 }
 units::degree_t Drive::GetHeading(){
@@ -81,6 +88,25 @@ frc2::CommandPtr Drive::CoastDrive(){
                             Drive::m_LftF.SetNeutralMode(Coast);})
                             .WithName("Coast Drive");
 }
-// units::meter_t Drive::GetAverageEncoder(){
-//     return units::meter_t{(m_RgtF.GetSelectedSensorPosition() + m_LftF.GetSelectedSensorPosition()) / 2};
-// }
+
+int Drive::GetAverageEncoder(){
+    return (m_RgtF.GetSelectedSensorPosition() + m_LftF.GetSelectedSensorPosition()) / 2;
+}
+
+frc2::CommandPtr Drive::DriveDistanceCommand(int distance,
+                                             double speed) {
+  return RunOnce([this] {
+           // Reset encoders at the start of the command
+           m_RgtF.SetSelectedSensorPosition(0);
+           m_LftF.SetSelectedSensorPosition(0);
+           
+         })
+      // Drive forward at specified speed
+      .AndThen(Run([this, speed] { m_drive.ArcadeDrive(speed, 0.0); }))
+      .Until([this, distance] {
+        return  m_RgtF.GetSelectedSensorPosition() >=
+               distance;
+      })
+      // Stop the drive when the command ends
+      .FinallyDo([this](bool interrupted) { m_drive.StopMotor(); });
+}

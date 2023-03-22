@@ -14,6 +14,7 @@ class Swivel : public frc2::SubsystemBase{
      Swivel();
      
      void resetSwivel();
+     int getSwivel();
      void setSwivel(int pow);
      [[nodiscard]] frc2::CommandPtr SwivelDownCommand();
 

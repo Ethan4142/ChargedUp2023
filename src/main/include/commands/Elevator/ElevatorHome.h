@@ -5,9 +5,9 @@
 
 // #include "subsystems/Elevator.h"
 
-// class ElevatorThird : public frc2::CommandHelper<frc2::CommandBase, ElevatorThird> {
+// class ElevatorHome : public frc2::CommandHelper<frc2::CommandBase, ElevatorHome> {
 //     public:
-//      ElevatorThird(Elevator* subsystem);
+//      ElevatorHome(Elevator* subsystem);
 
 //      void Initialize() override; 
 //      void Initialize() override;
@@ -19,5 +19,5 @@
 //      bool IsFinished() override; 
 //     private:
 //      Elevator* m_elevator;
-
+        
 // };

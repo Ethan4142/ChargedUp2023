@@ -126,7 +126,7 @@ namespace SwivelConstants{
         
     //Swivel Presets
     constexpr int down = 0;
-    constexpr int prep = 1000;
+    constexpr int prep = 600;
     constexpr int feeder = 750;
     constexpr int score = 2100;
 
@@ -144,7 +144,7 @@ namespace SwivelConstants{
 namespace ManipulatorConstants{
     //1x 775
     //1 piston
-    constexpr int manipulatorPort = 2;
+    constexpr int manipulatorPort = 11;
     constexpr int manipulatorPistonPorts [] = {6, 7};
 
 }

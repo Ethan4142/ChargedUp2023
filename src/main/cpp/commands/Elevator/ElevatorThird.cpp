@@ -1,24 +1,24 @@
-#include "commands/Elevator/ElevatorThird.h"
+// #include "commands/Elevator/ElevatorThird.h"
 
-ElevatorThird::ElevatorThird(Elevator* subsystem) : pchs_Elevator(subsystem){
-    AddRequirements(subsystem);
-}
 
-void ElevatorThird::Initialize(){
-    pchs_Elevator->ResetElevatorEnc();
-    pchs_Elevator->SetElevator(0.5);
+// ElevatorThird::ElevatorThird(Elevator* subsystem)
+//     : m_elevator(subsystem){
+//         AddRequirements({subsystem});
+//     }
 
-}
+// void ElevatorThird::Initialize(){
+//     m_elevator-> extend(true);
+//     m_elevator -> ResetElevatorEnc();
+// }
 
-void ElevatorThird::Execute(){
-    
-}
+// void ElevatorThird::Execute(){
+//     m_elevator -> SetElevator(0.3);
+// }
 
-bool ElevatorThird::IsFinished(){
-    if(pchs_Elevator->GetElevator() >= 500){
-        return true;
-    }
-    else{
-        return false;
-    }
-}
+// void ElevatorThird::End(bool interrupted){
+//     m_elevator -> SetElevator(0);
+// }
+
+// bool ElevatorThird::IsFinished(){
+//     return m_elevator->GetElevator() > 170000;
+// }
